@@ -14,17 +14,36 @@ export function HomePage() {
     const [userData, setUserData] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:8081/")
-        .then(res => setUserData(res.data))
-        .catch(err => setUserData([]))
-        console.log(userData)
+        getData()
     }, [])
+
+    const getData = () => {
+        axios.get("http://localhost:8081/")
+        .then(res => setUserData([...res.data]))
+        .catch(err => setUserData(null))
+    }
+
+    const addContact = (event) => {
+        event.preventDefault()
+
+        axios.post("http://localhost:8081/addstudent", newContact)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
+        setNewContact({
+            name: "",
+            number: "",
+            address: "",
+            occupation: "",
+        })
+        getData()
+    }
 
     return(
         <div className='formPart'>
             <div className='formtable'>
             <h1>Add Number</h1>
-            <form method='post'>
+            <form onSubmit={addContact}>
                 <p>Person Name</p>
                 <input placeholder='Name' 
                     autoFocus autoComplete='off' 
@@ -85,28 +104,25 @@ export function HomePage() {
                     {userData.map((data) => (
                         <tr key={data.id}>
                             <td>{data.name}</td>
+                            <td>{data.number}</td>
+                            <td>{data.address}</td>
+                            <td>{data.occupation}</td>
+                            <td>
+                                <AiOutlineEdit size={20}
+                                style={{
+                                    width: 50,
+                                    cursor: 'pointer',
+                                }}
+                                />
+                                <AiOutlineDelete size={20}
+                                style={{
+                                    width: 50,
+                                    cursor: 'pointer',
+                                }}
+                                />
+                            </td>
                         </tr>
                     ))}
-                {/* <tr>
-                    <td>${data.name}</td>
-                    <td>${data.number}</td>
-                    <td>${data.address}</td>
-                    <td>${data.occupation}</td>
-                    <td>
-                        <AiOutlineEdit size={20}
-                        style={{
-                            width: 50,
-                            cursor: 'pointer',
-                        }}
-                        />
-                        <AiOutlineDelete size={20}
-                        style={{
-                            width: 50,
-                            cursor: 'pointer',
-                        }}
-                        />
-                    </td>
-                </tr> */}
                 </tbody>
                 </table>
             </div>

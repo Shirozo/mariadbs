@@ -1,0 +1,101 @@
+*, body {
+  padding: 0%;
+  margin: 0%;
+}
+
+.App {
+  text-align: center;
+  padding: 2%;
+
+}
+
+.headertitle {
+  margin-bottom: 5%;
+}
+
+.formPart { 
+  padding: 1%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.formPart h1 {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 3%;
+}
+
+
+.formtable {
+  background-color: aliceblue;
+  width: 50%;
+  padding: 2%;
+}
+
+.formtable form {
+  background-color: #D6EEEE;
+  padding: 3%;
+}
+
+.formtable p{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serifs;
+  font-size: 20px;
+  margin-bottom: 1%;
+}
+
+.formtable input {
+  padding: 1.5%;
+  margin-bottom: 2%;
+  border: 1px black solid;
+  border-radius: .3em;
+  width: 30%;
+  background-color: #e1f5f5;
+}
+
+.formtable input:focus {
+  border: blue solid 1px;
+  outline: blue solid 1px;
+}
+
+.formtable div button {
+  padding: 1%;
+  width: 10%;
+  background-color: #D6EEEE;
+  border: 1px solid black;
+  border-radius: .5em;
+  cursor: pointer;
+  transition: all ease-out .5s;
+  transform: scale(1);
+}
+
+.formtable div button:hover {
+  transition: all ease-in .5s;
+  transform: scale(1.2);
+}
+
+.people {
+  background-color: aliceblue;
+  width: 50%;
+  padding: 2%;
+}
+
+.peopleData {
+  background-color: #D6EEEE;
+  padding: 3%;
+  overflow: scroll;
+  height: 42dvh;
+  overflow-x: hidden;
+}
+
+.peopleData table thead tr th{
+  width: 15%;
+  padding: 1%;
+  font-size: 120%;
+}
+
+.peopleData table tbody tr td{
+  padding: 1%;
+}
+
+.editIcon {
+  width: 20%;
+}

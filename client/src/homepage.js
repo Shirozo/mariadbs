@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 import axios from 'axios'
+import { Rendertbody } from "./JS/rendertbody"
+import { EditForm } from "./JS/editForm"
 
 export function HomePage() {
 
@@ -11,6 +12,8 @@ export function HomePage() {
         occupation: "",
     })
 
+    const [editingData, setEditingData] = useState({})
+    const [editpress, setEditPress] = useState(false)
     const [userData, setUserData] = useState([])
 
     useEffect(() => {
@@ -26,107 +29,122 @@ export function HomePage() {
     const addContact = (event) => {
         event.preventDefault()
 
-        axios.post("http://localhost:8081/addstudent", newContact)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-
-        setNewContact({
-            name: "",
-            number: "",
-            address: "",
-            occupation: "",
+        axios.post("http://localhost:8081/addcontact", newContact)
+        .then(res => {
+            setNewContact({
+                name: "",
+                number: "",
+                address: "",
+                occupation: "",
+            })
+            getData()
         })
-        getData()
+        .catch(err => console.log(err))
     }
 
-    return(
-        <div className='formPart'>
-            <div className='formtable'>
-            <h1>Add Number</h1>
-            <form onSubmit={addContact}>
-                <p>Person Name</p>
-                <input placeholder='Name' 
-                    autoFocus autoComplete='off' 
-                    required
-                    value={newContact.name}
-                    onChange={(name) => setNewContact((prevSet) => ({
-                        ...prevSet, name: name.target.value
-                    }))}
-                />
+    const handleDelete = async (id) => {
+        try {
+            const res = await axios.delete("http://localhost:8081/removecontact/"+id)
+            getData()
+        }
+        catch (err) {
+            console.log(err)
+        }
 
-                <p>Person Number</p>
-                <input placeholder='Number' 
+    }
+
+    const handleEdit = async(id) => {
+        const res = await axios.get("http://localhost:8081/user/"+id)
+        setEditingData(...res.data)
+        setEditPress(true)
+    }
+
+
+    return(
+        <>
+            {editpress && (
+                <EditForm  
+                    data={editingData} 
+                    onUpdate={() => getData()}
+                    onclose={() => setEditPress(false)}
+            />)}
+            <h1 className='headertitle'>Simple CRUD with MariaDB</h1>
+            <div className='formPart'>
+                <div className='formtable'>
+                <h1>Add Number</h1>
+                <form onSubmit={addContact}>
+                    <p>Person Name</p>
+                    <input placeholder='Name' 
                         autoFocus autoComplete='off' 
                         required
-                        value={newContact.number}
-                        onChange={(number) => setNewContact((prevSet) => ({
-                        ...prevSet, number: number.target.value
+                        value={newContact.name}
+                        onChange={(name) => setNewContact((prevSet) => ({
+                            ...prevSet, name: name.target.value
                         }))}
-                />
+                    />
 
-                <p>Person Address</p>
-                <input placeholder='Address' 
-                        autoFocus autoComplete='off'
-                        value={newContact.address}
-                        onChange={(address) => setNewContact((prevSet) => ({
-                        ...prevSet, address: address.target.value
-                        }))}
-                />
-                
-                <p>Person Occupation</p>
-                <input placeholder='Occupation' 
-                        autoFocus autoComplete='off'
-                        value={newContact.occupation}
-                        onChange={(occupation) => setNewContact((prevSet) => ({
-                        ...prevSet, occupation: occupation.target.value
-                        }))}
-                />
+                    <p>Person Number</p>
+                    <input placeholder='Number' 
+                            autoFocus autoComplete='off' 
+                            required
+                            value={newContact.number}
+                            onChange={(number) => setNewContact((prevSet) => ({
+                            ...prevSet, number: number.target.value
+                            }))}
+                    />
 
-                <div>
-                <button>Add</button>
+                    <p>Person Address</p>
+                    <input placeholder='Address (N/A if None)' 
+                            autoFocus autoComplete='off'
+                            value={newContact.address}
+                            required
+                            onChange={(address) => setNewContact((prevSet) => ({
+                            ...prevSet, address: address.target.value
+                            }))}
+                    />
+                    
+                    <p>Person Occupation</p>
+                    <input placeholder='Occupation (N/A if None)' 
+                            autoFocus autoComplete='off'
+                            required
+                            value={newContact.occupation}
+                            onChange={(occupation) => setNewContact((prevSet) => ({
+                            ...prevSet, occupation: occupation.target.value
+                            }))}
+                    />
+
+                    <div>
+                    <button className="submit-button">Add</button>
+                    </div>
+                </form>
                 </div>
-            </form>
-            </div>
-            <div className='people'>
-            <h1>Contacts</h1>
-            <div className='peopleData'>
-                <table>
-                <thead>
-                    <tr>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Occupation</th>
-                    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {userData.map((data) => (
-                        <tr key={data.id}>
-                            <td>{data.name}</td>
-                            <td>{data.number}</td>
-                            <td>{data.address}</td>
-                            <td>{data.occupation}</td>
-                            <td>
-                                <AiOutlineEdit size={20}
-                                style={{
-                                    width: 50,
-                                    cursor: 'pointer',
-                                }}
+                <div className='people'>
+                    <h1>Contacts</h1>
+                    <div className='peopleData'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Address</th>
+                                    <th>Occupation</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                            {userData.map((data) => (
+                                <Rendertbody 
+                                    key={data.id}
+                                    data={data} 
+                                    handleDelete={() => handleDelete(data.id)}
+                                    handleEdit={() => handleEdit(data.id)}
                                 />
-                                <AiOutlineDelete size={20}
-                                style={{
-                                    width: 50,
-                                    cursor: 'pointer',
-                                }}
-                                />
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-                </table>
+                            ))}
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
+        </>
     )
 }

@@ -40,4 +40,44 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <footer>
+    <script src="https://kit.fontawesome.com/2852a526f4.js" crossorigin="anonymous"></script>
+    <style>
+        .my-footer{
+            text-align: center;
+            padding: 1% 1%;
+            position: absolute;
+            bottom: 0%;
+            width: 98%;
+        }
+
+        .my-footer i{
+            cursor: pointer; 
+            margin: 0% .5%;
+        }
+
+        .color-black{
+            background-color: black;
+        }
+
+        .color-black i{
+            filter: invert(1);
+        }
+    </style>
+    <div class="my-footer color-black">
+        <i class="fa-brands fa-github fa-lg" onclick="mylinkredirect(0)"></i>
+        <i class="fa-brands fa-facebook fa-lg" onclick="mylinkredirect(1)"></i>
+        <i class="fa-brands fa-linkedin fa-lg" onclick="mylinkredirect(2)"></i>
+    </div>
+    <script>
+        function mylinkredirect (link) {
+            const mylinks = [
+                "https://github.com/Shirozo",
+                "https://www.facebook.com/Im.Youare.Weall.gonnadie",
+                "https://www.linkedin.com/in/neil-bryan-caranzo-41630218b/"
+            ]
+            window.open(mylinks[link]);
+        }
+    </script>
+  </footer >
 </html>

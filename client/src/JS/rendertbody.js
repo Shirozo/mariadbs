@@ -1,6 +1,9 @@
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 
 export function Rendertbody( {data, handleDelete, handleEdit} ) {
+    /**
+    React function para hit pagrender hiton table
+    */
     return (
         <>
             <tr>

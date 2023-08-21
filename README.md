@@ -14,3 +14,9 @@
 ![Alt text](/img/Screenshot5.png)
 
 8. Kahuman nim magconfigure open it `./server/dbconfig.js`
+   #### sample hit server configuration
+![Alt text](/img/codea.png)
+
+9. And finally balik ha parent folder `..\mariadbs\` dire `..\mariadbs\server` or `..\mariadbs\client`
+   Like this one:
+   

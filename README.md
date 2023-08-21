@@ -18,5 +18,8 @@
 ![Alt text](/img/codea.png)
 
 9. And finally balik ha parent folder `..\mariadbs\` dire `..\mariadbs\server` or `..\mariadbs\client`
-   Like this one:
-   
+Like this one:
+![Alt text](/img/dir.png)
+
+10. Execute `npm start`
+## Happy Coding!!!

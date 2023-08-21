@@ -5,7 +5,7 @@
 2. tapos nama ig clone using `CMD` or bisan ano  nga `Terminal`. Adi it ibutang ha `https://github.com/Shirozo/mariadbs.git`
 3. Mayda ngat duha nga folder an `client` tas `server`.
 4. Navigate lanay hit server using tim terminal `cd server`. Once ada kana hit nga directory run `npm install` considering dama nga mayda kana `node`:)
-5. Tapos `cd ../` ngan navigate nama ha cliend directory `cd client` ngan `npm install` dadama.
+5. Tapos `cd ../` ngan navigate nama ha client directory `cd client` ngan `npm install` dadama.
 6. Next configure tim mariadb. Ig open it `Heidisql`.
 ![Alt text](/img/Screenshot1.png)
 ![Alt text](/img/Screenshot2.png)
@@ -18,5 +18,8 @@
 ![Alt text](/img/codea.png)
 
 9. And finally balik ha parent folder `..\mariadbs\` dire `..\mariadbs\server` or `..\mariadbs\client`
-   Like this one:
-   
+Like this one:
+![Alt text](/img/dir.png)
+
+10. Execute `npm start`
+## Happy Coding!!!

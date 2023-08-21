@@ -1,0 +1,17 @@
+{
+  "name": "mariadbs",
+  "version": "1.0.0",
+  "description": "1. Ig fork anay in nga repo\r 2. tapos nama ig clone using `CMD` or bisan ano  nga `Terminal`. Adi it ibutang ha `https://github.com/Shirozo/mariadbs.git`\r 3. Mayda ngat duha nga folder an `client` tas `server`.\r 4. Navigate lanay hit server using tim terminal `cd server`. Once ada kana hit nga directory run `npm install` considering dama nga mayda kana `node`:)\r 5. Tapos `cd ../` ngan navigate nama ha cliend directory `cd client` ngan `npm install` dadama.\r 6. Next configure tim mariadb. Ig open it `Heidisql`.\r ![Alt text](/img/Screenshot1.png)\r ![Alt text](/img/Screenshot2.png)\r ![Alt text](/img/Screenshot3.png)\r ![Alt text](/img/Screenshot4.png)\r ![Alt text](/img/Screenshot5.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm-run-all --parallel start-server start-client",
+    "start-server" : "cd server && npm start",
+    "start-client" : "cd client && npm start" 
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

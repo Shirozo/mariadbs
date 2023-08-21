@@ -12,6 +12,8 @@
 ![Alt text](/img/Screenshot3.png)
 ![Alt text](/img/Screenshot4.png)
 ![Alt text](/img/Screenshot5.png)
+![Alt text](/img/Screenshot6.png)
+![Alt text](/img/Screenshot7.png)
 
 8. Kahuman nim magconfigure open it `./server/dbconfig.js`
    #### sample hit server configuration

@@ -6,8 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm-run-all --parallel start-server start-client",
-    "start-server" : "cd server && npm start",
-    "start-client" : "cd client && npm start" 
+    "install": "npm-run-all --parallel server-npm client-npm",
+    "start-server": "cd server && npm start",
+    "start-client": "cd client && npm start",
+    "server-npm" : "cd server && npm install",
+    "client-npm" : "cd client && npm install"
   },
   "author": "",
   "license": "ISC",
